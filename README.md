@@ -16,7 +16,8 @@ Final-year students struggle to choose a suitable, feasible FYP topic and a matc
 
 - **Supervisor recommender engine** — rates a student's interest in fixed areas (e.g. Multimedia, Network, AI) and returns lecturers with similar profiles ([Ismail et al., arXiv:1908.03475](https://arxiv.org/abs/1908.03475)). *Limitation:* matches supervisors only by a few fixed categories; it does not suggest specific topics, read faculty documents, or explain its recommendations.
 - **KNN thesis topic recommender** — classifies students into topic areas from their skills, interests and experience ([Maazzalla & Perkasa, 2026](https://journal.lembagakita.com/ijsecs/article/download/7659/5032)). *Limitation:* only four broad areas, a small dataset (25 respondents, 5 test cases), and no grounding in supervisors, past projects or citations.
-- **Programming skill vs. FYP area study** — measures how students' programming skills relate to their chosen FYP area of interest ([University of Bahrain, IJCDS](https://journal.uob.edu.bh/handle/123456789/4011)). *Limitation:* provides a basis for a recommender but does not build one or support students in choosing a concrete topic.
+- **TeamUp: semantic project matching** — embeds student profiles and project descriptions with pretrained language models and ranks projects by cosine similarity, adjusted for difficulty and supervisor demand ([Gulwani et al., 2026, arXiv:2605.03237](https://arxiv.org/abs/2605.03237)). *Limitation:* matches students to a fixed list of existing projects rather than helping them form a new topic; evaluated only on synthetic data (250 dummy students), with no citations to source documents or novelty check against past projects.
+
 
 ## Project Objectives
 
@@ -26,8 +27,7 @@ Final-year students struggle to choose a suitable, feasible FYP topic and a matc
 
 ## Target Users
 
-- **Primary:** final-year and pre-final-year undergraduate students in computing / AI programmes preparing their FYP proposal.
-- **Secondary:** FYP coordinators and supervisors who want a self-service first step to point students to.
+Undergraduate students at UTM's Faculty of Artificial Intelligence who are about to choose their FYP topic and supervisor, especially those who are unsure which research area suits their interests and skills or which lecturer supervises it.
 
 ## Data Sources
 
