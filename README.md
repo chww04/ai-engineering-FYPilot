@@ -34,7 +34,7 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 - **Source 2:** UTM Institutional Repository — past project and thesis abstracts for topic inspiration and novelty checks — https://eprints.utm.my
 - **Source 3:** UTM Faculty of Artificial Intelligence — departments and research groups — https://fai.utm.my
 - **Source 4:** UTM staff profile pages — lecturer research expertise for supervisor matching — https://people.utm.my
-- **Optional Source 5:** arXiv (cs.AI / cs.CL) — recent abstracts for emerging-topic suggestions — https://arxiv.org
+
 
 ## Weekly Progress
 
