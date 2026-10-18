@@ -1,6 +1,6 @@
 # FYPilot — AI FYP Topic Recommendation Assistant
 
-> A document-grounded AI assistant that recommends final year project (FYP) topics and matching supervisors for undergraduate computing and AI students, based on their interests, skills and official faculty documents.
+> A document-grounded AI assistant that recommends final year project (FYP) topics and matching supervisors for UTM Faculty of AI undergraduates, based on their interests, skills and official faculty documents.
 
 ## Problem Statement
 
@@ -18,7 +18,6 @@ Final-year students struggle to choose a suitable, feasible FYP topic and a matc
 - **KNN thesis topic recommender** — classifies students into topic areas from their skills, interests and experience ([Link](https://journal.lembagakita.com/ijsecs/article/download/7659/5032)). *Limitation:* only four broad areas, a small dataset (25 respondents, 5 test cases), and no grounding in supervisors, past projects or citations.
 - **TeamUp: semantic project matching** — embeds student profiles and project descriptions with pretrained language models and ranks projects by cosine similarity, adjusted for difficulty and supervisor demand ([Link](https://arxiv.org/abs/2605.03237)). *Limitation:* matches students to a fixed list of existing projects rather than helping them form a new topic; evaluated only on synthetic data (250 dummy students), with no citations to source documents or novelty check against past projects.
 
-
 ## Project Objectives
 
 - **O1:** To design a document-grounded AI assistant that recommends FYP topics and matching supervisors using official faculty and repository documents.
@@ -31,11 +30,11 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 
 ## Data Sources
 
-- **Source 1:** UTM Institutional Repository — past project and thesis abstracts for topic inspiration and novelty checks — https://eprints.utm.my
-- **Source 2:** UTM Faculty of Artificial Intelligence — departments and research groups — https://fai.utm.my
-- **Source 3:** UTM staff profile pages — lecturer research expertise for supervisor matching — https://people.utm.my
-- **Source 4 (to add):** Faculty FYP Guidelines / Handbook PDF — scope rules, timeline, assessment criteria https://sites.google.com/utm.my/fai-fyp/home?authuser=0
-
+- **Source 1:** FAI FYP Guidelines (UTM Faculty of AI FYP site) — scope rules, timeline, assessment criteria — https://sites.google.com/utm.my/fai-fyp/home
+- **Source 2:** UTM Institutional Repository — past project and thesis abstracts for topic inspiration and novelty checks — https://eprints.utm.my
+- **Source 3:** UTM Faculty of Artificial Intelligence — departments and research groups — https://fai.utm.my
+- **Source 4:** UTM staff profile pages — lecturer research expertise for supervisor matching — https://people.utm.my
+- **Optional Source 5:** arXiv (cs.AI / cs.CL) — recent abstracts for emerging-topic suggestions — https://arxiv.org
 
 ## Weekly Progress
 
