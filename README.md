@@ -36,8 +36,18 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 - **Source 4:** UTM staff profile pages — lecturer research expertise for supervisor matching — https://people.utm.my
 
 
+## Documentation
+
+- [Week 1 — Project Scope](docs/week1_project_scope.md)
+- [Week 2 — Requirements (FR, NFR, RAI)](docs/week2_requirements.md)
+- [Week 2 — Evaluation Criteria](docs/week2_evaluation_criteria.md)
+- [Week 2 — Architecture Decisions & Traceability](docs/week2_architecture_decisions.md)
+
+![V1 Architecture](docs/week2_architecture_v1.png)
+
 ## Weekly Progress
 
 | Week | Focus | Deliverable | Status |
 |------|-------|-------------|--------|
 | W1 | System map + project scope | README + docs | ✅ |
+| W2 | Requirements, evaluation criteria + V1 architecture | docs/week2_*.md + architecture diagram | ✅ |
