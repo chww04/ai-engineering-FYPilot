@@ -42,8 +42,13 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 - [Week 2 — Requirements (FR, NFR, RAI)](docs/week2_requirements.md)
 - [Week 2 — Evaluation Criteria](docs/week2_evaluation_criteria.md)
 - [Week 2 — Architecture Decisions & Traceability](docs/week2_architecture_decisions.md)
+- [Week 3 — Data Inventory](docs/week3_data_inventory.md)
+- [Week 3 — Pipeline Decisions & Stage Contracts](docs/week3_pipeline_decisions.md)
+- [Week 3 — V1 Data Pipeline Notebook](notebooks/week3_pipeline.ipynb)
 
 ![V1 Architecture](docs/week2_architecture_v1.png)
+
+![Week 3 V1 Data Pipeline](docs/week3_pipeline_diagram.png)
 
 ## Weekly Progress
 
@@ -51,3 +56,4 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 |------|-------|-------------|--------|
 | W1 | System map + project scope | README + docs | ✅ |
 | W2 | Requirements, evaluation criteria + V1 architecture | docs/week2_*.md + architecture diagram | ✅ |
+| W3 | V1 data pipeline (PDF/TXT, synthetic practice data) | notebook + data inventory + pipeline diagram + prepared data & manifests | ✅ |

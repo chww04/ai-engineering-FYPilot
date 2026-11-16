@@ -1,0 +1,32 @@
+SYNTHETIC PRACTICE DATA - created for the AI Engineering Topic 3 lab. Not official UTM content.
+Source: synthetic records modelled on UTM staff profile and FAI research group pages. Lecturer names are placeholders.
+
+Staff ID: STAFF-01
+Name: Dr. Lecturer A (synthetic)
+Department: Intelligence Informatics
+Research areas: Natural language processing; retrieval-augmented generation; Malay language technology
+Supervision: Supervises projects on chatbots, question answering, text classification and document understanding. Interested in grounded and explainable language applications for education.
+
+Staff ID: STAFF-02
+Name: Dr. Lecturer B (synthetic)
+Department: Smart Engineering and Advanced Technology
+Research areas: Computer vision; edge AI; agricultural image analysis
+Supervision: Supervises projects on plant disease detection, object detection on low-power devices and image-based quality inspection.
+
+Staff ID: STAFF-03
+Name: Assoc. Prof. Lecturer C (synthetic)
+Department: Business Intelligence, Humanities and Governance
+Research areas: Recommender systems; learning analytics; fairness in AI
+Supervision: Supervises projects on course and career recommendation, student performance prediction and fairness auditing of educational AI systems.
+
+Staff ID: STAFF-04
+Name: Dr. Lecturer D (synthetic)
+Department: Smart Engineering and Advanced Technology
+Research areas: Internet of Things; time-series anomaly detection; smart campus
+Supervision: Supervises projects on sensor networks, environmental monitoring, predictive maintenance and energy analytics.
+
+Staff ID: STAFF-05
+Name: Dr. Lecturer E (synthetic)
+Department: Creative Artificial Intelligence
+Research areas: Generative AI; AI ethics; human-AI interaction
+Supervision: Supervises projects on generative models for design, detection of AI-generated content and responsible use of AI tools by students.

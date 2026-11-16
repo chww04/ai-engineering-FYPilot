@@ -1,0 +1,42 @@
+{
+  "pipeline_version": "week3-v1",
+  "generated_at_utc": "2026-11-02T01:40:20.952344+00:00",
+  "data_type": "documents_past_fyps",
+  "configuration": {
+    "chunk_size": 800,
+    "method": "paragraph-aware",
+    "restore_heading_breaks": true
+  },
+  "processing_method": "paragraph-aware text chunks of 800 characters; restore_heading_breaks=True",
+  "sources": [
+    {
+      "path": "/content/week3_project/data/raw/past_fyp_abstracts_synthetic.txt",
+      "sha256": "77f572abd3755d33554d45241b11271bd5c5341c73cb46be8d7bae2950c5fc0d"
+    }
+  ],
+  "outputs": [
+    "/content/week3_project/data/pipeline_v1/documents_past_fyps/prepared_text.jsonl"
+  ],
+  "source_output_mapping": [
+    {
+      "source": "/content/week3_project/data/raw/past_fyp_abstracts_synthetic.txt",
+      "output": "/content/week3_project/data/pipeline_v1/documents_past_fyps/prepared_text.jsonl"
+    }
+  ],
+  "inspection": {
+    "source": "past_fyp_abstracts_synthetic.txt",
+    "characters": 5059,
+    "pages": null
+  },
+  "validation": {
+    "output_count": 1,
+    "output_sha256": [
+      "b5e1a055366c66ef9b65dd74c2c1201cecb4b336617ee03623649ee0414b0939"
+    ],
+    "output_bytes": [
+      6101
+    ]
+  },
+  "source_version": "Not verified",
+  "access_rights": "Not verified — check before sharing"
+}

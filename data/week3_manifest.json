@@ -1,0 +1,39 @@
+{
+  "pipeline_version": "week3-v1",
+  "generated_at_utc": "2026-11-02T01:40:18.391807+00:00",
+  "records": [
+    {
+      "source_id": "S01",
+      "source_filename": "fai_fyp_guidelines_synthetic.pdf",
+      "source_sha256": "5b3722e5a236a7a6088271db6ebe4d4a4071a646fa942558a17b4643d661db0f",
+      "prepared_output": "data/processed/prepared_text.jsonl",
+      "prepared_sha256": "0cd1700035a7452b991705e37b25e24789e695d7e7e52b4533b7c6019d4f0891",
+      "processing_note": "paragraph-aware-char-800; restore_heading_breaks=True; whitespace-normalised",
+      "source_version": "Synthetic practice data v1.0 (2026-11-02)",
+      "access_rights": "Synthetic, created by the project team; shareable. Real sources: public UTM pages, rights to be verified",
+      "status": "Prepared; quality review pending"
+    },
+    {
+      "source_id": "S02",
+      "source_filename": "past_fyp_abstracts_synthetic.txt",
+      "source_sha256": "77f572abd3755d33554d45241b11271bd5c5341c73cb46be8d7bae2950c5fc0d",
+      "prepared_output": "data/processed/prepared_text.jsonl",
+      "prepared_sha256": "0cd1700035a7452b991705e37b25e24789e695d7e7e52b4533b7c6019d4f0891",
+      "processing_note": "paragraph-aware-char-800; restore_heading_breaks=True; whitespace-normalised",
+      "source_version": "Synthetic practice data v1.0 (2026-11-02)",
+      "access_rights": "Synthetic, created by the project team; shareable. Real sources: public UTM pages, rights to be verified",
+      "status": "Prepared; quality review pending"
+    },
+    {
+      "source_id": "S03",
+      "source_filename": "staff_research_profiles_synthetic.txt",
+      "source_sha256": "8e7b124f9b9d81ce4dc1c0662cfdf141c3395ef922c3e08896cfb503aa130dc2",
+      "prepared_output": "data/processed/prepared_text.jsonl",
+      "prepared_sha256": "0cd1700035a7452b991705e37b25e24789e695d7e7e52b4533b7c6019d4f0891",
+      "processing_note": "paragraph-aware-char-800; restore_heading_breaks=True; whitespace-normalised",
+      "source_version": "Synthetic practice data v1.0 (2026-11-02)",
+      "access_rights": "Synthetic, created by the project team; shareable. Real sources: public UTM pages, rights to be verified",
+      "status": "Prepared; quality review pending"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+SYNTHETIC PRACTICE DATA - created for the AI Engineering Topic 3 lab. Not official UTM content.
+Source: synthetic records modelled on UTM ePrints abstract pages (title, year, area, abstract).
+
+Record ID: PFYP-2023-01
+Title: Deep Learning-Based Durian Leaf Disease Detection for Smallholder Farmers
+Year: 2023
+Research area: Computer vision
+Abstract: Durian leaf diseases reduce yield for smallholder farmers who lack access to plant pathologists. This project developed a convolutional neural network that classifies five common durian leaf conditions from smartphone photographs. A dataset of 3,200 labelled images was collected from local farms and augmented to balance minority classes. The final model achieved 91 percent accuracy on a held-out test set and was deployed as a mobile prototype. Limitations include sensitivity to lighting conditions and a small number of samples for rare diseases.
+
+Record ID: PFYP-2023-02
+Title: Malay-English Code-Switched Sentiment Analysis of Product Reviews
+Year: 2023
+Research area: Natural language processing
+Abstract: Malaysian online reviews frequently mix Malay and English within a single sentence, which reduces the accuracy of monolingual sentiment models. This project compared a lexicon-based baseline, a TF-IDF logistic regression model and a fine-tuned multilingual transformer on 8,000 code-switched reviews. The transformer achieved the highest macro F1 score of 0.82. The study highlights the need for larger annotated code-switched corpora.
+
+Record ID: PFYP-2024-01
+Title: A Chatbot for Answering University Hostel Enquiries Using Retrieval-Augmented Generation
+Year: 2024
+Research area: Natural language processing
+Abstract: Students often repeat the same questions about hostel application, fees and rules. This project built a retrieval-augmented chatbot that answers hostel enquiries from official residential college documents. Documents were split into chunks, embedded and stored in a vector database, and answers cited the source document. Evaluation on 60 test questions showed 85 percent correct answers and 100 percent citation presence. Out-of-date documents were identified as the main risk.
+
+Record ID: PFYP-2024-02
+Title: Predicting Student Dropout Risk from Learning Management System Activity
+Year: 2024
+Research area: Machine learning
+Abstract: Early identification of students at risk of dropping out allows timely support. This project used anonymised learning management system logs to train gradient boosting and random forest classifiers. The best model reached an AUC of 0.87. Fairness analysis showed lower recall for part-time students, and the project recommends human review of all predictions before any intervention.
+
+Record ID: PFYP-2024-03
+Title: IoT-Based Air Quality Monitoring with Anomaly Detection for Campus Buildings
+Year: 2024
+Research area: Internet of Things
+Abstract: Indoor air quality affects student health and concentration. This project deployed low-cost sensors measuring carbon dioxide, PM2.5, temperature and humidity in four lecture halls and applied an isolation forest model to detect abnormal readings. The system sends alerts to facility managers through a web dashboard. Sensor drift and network outages were the main reliability issues.
+
+Record ID: PFYP-2025-01
+Title: Course Recommendation System Based on Student Interests and Academic Performance
+Year: 2025
+Research area: Recommender systems
+Abstract: Students choosing elective courses rely on peers and incomplete information. This project developed a hybrid recommender that combines content-based filtering over course descriptions with collaborative filtering over past enrolment records. Evaluation with 40 students showed that 78 percent rated the top three recommendations as relevant. The system does not explain its recommendations, which reduced user trust.
+
+Record ID: PFYP-2025-02
+Title: Automated Detection of AI-Generated Text in Student Assignments
+Year: 2025
+Research area: Natural language processing
+Abstract: The growth of generative AI tools has raised concerns about academic integrity. This project trained classifiers to distinguish human-written and AI-generated paragraphs using stylometric features and a fine-tuned transformer. The best model achieved 88 percent accuracy on in-domain data but dropped to 64 percent on text from newer language models, showing that detection tools must be used with caution and never as the only evidence of misconduct.
+
+Record ID: PFYP-2025-03
+Title: Supervisor Matching for Final Year Projects Using Text Similarity
+Year: 2025
+Research area: Recommender systems
+Abstract: Students often do not know which lecturer is most suitable to supervise their project idea. This project represented lecturer research profiles and student project ideas as TF-IDF vectors and ranked lecturers by cosine similarity. A pilot with 25 students found that the top suggested lecturer matched the student's eventual supervisor in 56 percent of cases. Popular lecturers were recommended disproportionately, indicating a need for load balancing.

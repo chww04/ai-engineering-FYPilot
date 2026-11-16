@@ -1,0 +1,42 @@
+{
+  "pipeline_version": "week3-v1",
+  "generated_at_utc": "2026-11-02T01:40:20.953100+00:00",
+  "data_type": "documents_staff_profiles",
+  "configuration": {
+    "chunk_size": 800,
+    "method": "paragraph-aware",
+    "restore_heading_breaks": true
+  },
+  "processing_method": "paragraph-aware text chunks of 800 characters; restore_heading_breaks=True",
+  "sources": [
+    {
+      "path": "/content/week3_project/data/raw/staff_research_profiles_synthetic.txt",
+      "sha256": "8e7b124f9b9d81ce4dc1c0662cfdf141c3395ef922c3e08896cfb503aa130dc2"
+    }
+  ],
+  "outputs": [
+    "/content/week3_project/data/pipeline_v1/documents_staff_profiles/prepared_text.jsonl"
+  ],
+  "source_output_mapping": [
+    {
+      "source": "/content/week3_project/data/raw/staff_research_profiles_synthetic.txt",
+      "output": "/content/week3_project/data/pipeline_v1/documents_staff_profiles/prepared_text.jsonl"
+    }
+  ],
+  "inspection": {
+    "source": "staff_research_profiles_synthetic.txt",
+    "characters": 1872,
+    "pages": null
+  },
+  "validation": {
+    "output_count": 1,
+    "output_sha256": [
+      "45a64beffc562014cfba78fd8588f4583fbd77ef1d402b5c3265c544d0e722be"
+    ],
+    "output_bytes": [
+      2251
+    ]
+  },
+  "source_version": "Not verified",
+  "access_rights": "Not verified — check before sharing"
+}
