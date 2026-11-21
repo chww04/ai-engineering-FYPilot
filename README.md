@@ -4,7 +4,7 @@
 
 ## Problem Statement
 
-Final-year students struggle to choose a suitable, feasible FYP topic and a matching supervisor, because topic lists, lecturer research areas and past project titles are scattered across separate PDFs and web pages, and supervisors have limited time for one-to-one consultation. General-purpose chatbots can suggest ideas, but they are not grounded in the faculty's real supervisors, rules or past projects. AI engineering makes it possible to build a retrieval-augmented (RAG) assistant that recommends and explains topics using official documents, with citations, guardrails and a novelty check against previous FYPs.
+Final-year students struggle to choose a suitable, feasible FYP topic and a matching supervisor, because the FYP rules, AI topic domains and lecturer research areas are scattered across a long handbook and separate department and profile pages, and supervisors have limited time for one-to-one consultation. General-purpose chatbots can suggest ideas, but they are not grounded in the faculty's real supervisors or rules. AI engineering makes it possible to build a retrieval-augmented (RAG) assistant that recommends topics grounded in what the faculty's lecturers actually research, explains them using official documents, and cites every source.
 
 ## Evidence of the Problem
 
@@ -15,14 +15,14 @@ Final-year students struggle to choose a suitable, feasible FYP topic and a matc
 ## Initial Related Work / Existing Approaches
 
 - **Supervisor recommender engine** — rates a student's interest in fixed areas (e.g. Multimedia, Network, AI) and returns lecturers with similar profiles ([Link](https://arxiv.org/abs/1908.03475)). *Limitation:* matches supervisors only by a few fixed categories; it does not suggest specific topics, read faculty documents, or explain its recommendations.
-- **KNN thesis topic recommender** — classifies students into topic areas from their skills, interests and experience ([Link](https://journal.lembagakita.com/ijsecs/article/download/7659/5032)). *Limitation:* only four broad areas, a small dataset (25 respondents, 5 test cases), and no grounding in supervisors, past projects or citations.
-- **TeamUp: semantic project matching** — embeds student profiles and project descriptions with pretrained language models and ranks projects by cosine similarity, adjusted for difficulty and supervisor demand ([Link](https://arxiv.org/abs/2605.03237)). *Limitation:* matches students to a fixed list of existing projects rather than helping them form a new topic; evaluated only on synthetic data (250 dummy students), with no citations to source documents or novelty check against past projects.
+- **KNN thesis topic recommender** — classifies students into topic areas from their skills, interests and experience ([Link](https://journal.lembagakita.com/ijsecs/article/download/7659/5032)). *Limitation:* only four broad areas, a small dataset (25 respondents, 5 test cases), and no grounding in supervisors, faculty documents or citations.
+- **TeamUp: semantic project matching** — embeds student profiles and project descriptions with pretrained language models and ranks projects by cosine similarity, adjusted for difficulty and supervisor demand ([Link](https://arxiv.org/abs/2605.03237)). *Limitation:* matches students to a fixed list of existing projects rather than helping them form a new topic; evaluated only on synthetic data (250 dummy students), with no citations to source documents and no link to the expertise of real supervisors.
 
 ## Project Objectives
 
 - **O1:** To design a document-grounded AI assistant that recommends FYP topics and matching supervisors using official faculty and repository documents.
-- **O2:** To develop the solution using retrieval-augmented generation (RAG) over faculty documents, with source citations, a past-project similarity check, and scope and privacy guardrails.
-- **O3:** To evaluate the solution in terms of recommendation relevance, supervisor match, groundedness (citation accuracy), duplicate-topic detection, latency, cost and Responsible AI safety (refusal, privacy and supervisor coverage).
+- **O2:** To develop the solution using retrieval-augmented generation (RAG) over faculty documents and lecturer expertise, with source citations and scope and privacy guardrails.
+- **O3:** To evaluate the solution in terms of recommendation relevance, supervisor match, groundedness (citation accuracy), topic–expertise grounding, latency, cost and Responsible AI safety (refusal, privacy and supervisor coverage).
 
 ## Target Users
 
@@ -30,10 +30,11 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 
 ## Data Sources
 
-- **Source 1:** FAI FYP Guidelines (UTM Faculty of AI FYP site) — scope rules, timeline, assessment criteria — https://sites.google.com/utm.my/fai-fyp/home
-- **Source 2:** UTM Institutional Repository — past project and thesis abstracts for topic inspiration and novelty checks — https://eprints.utm.my
-- **Source 3:** UTM Faculty of Artificial Intelligence — departments and research groups — https://fai.utm.my
-- **Source 4:** UTM staff profile pages — lecturer research expertise for supervisor matching — https://people.utm.my
+- **S01 — FYP Handbook BAI 2026/2027** (FAI FYP Committee, PDF, 119 pages) — FYP rules, timeline, assessment, academic integrity. Internal document: kept locally, not in this repo.
+- **S02 — Handbook Table 2.1: AI domains, topics and example FYP directions** (15 domains) — the domain frame for topic suggestions.
+- **S03 — Lecturer expertise:** the four FAI department staff pages (https://fai.utm.my — Intelligence Informatics, Smart Engineering and Advanced Technology, Business Intelligence Humanities and Governance, Creative AI) merged with research keywords from UTM Scholar (https://utmscholar.utm.my).
+
+Real files live in `data/raw_real/` (gitignored); checksums and counts are in [`data/real_data_manifest.json`](data/real_data_manifest.json) and are rebuilt by [`src/real_pilot_pipeline.py`](src/real_pilot_pipeline.py). The synthetic Week 3 practice files stay in `data/raw/` as evidence. A novelty check against past FYPs is future work: no past-FYP title list is available.
 
 
 ## Documentation
@@ -46,8 +47,10 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 - [Week 3 — Pipeline Decisions & Stage Contracts](docs/week3_pipeline_decisions.md)
 - [Week 3 — V1 Data Pipeline Notebook](notebooks/week3_pipeline.ipynb)
 - [Week 4 — Data Quality & Bias Report](docs/week4_data_quality_report.md)
+- [Week 4 — Real-data pilot pipeline](src/real_pilot_pipeline.py)
+- [Week 4 — V2 architecture diagram](docs/week4_architecture_v2.jpg) (V1: [week2_architecture_v1.png](docs/week2_architecture_v1.png))
 
-![V1 Architecture](docs/week2_architecture_v1.png)
+![V2 Architecture (Week 4)](docs/week4_architecture_v2.jpg)
 
 ![Week 3 V1 Data Pipeline](docs/week3_pipeline_diagram.png)
 
@@ -62,9 +65,10 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 
 ## Week 4 Quality Gate
 
-**GO WITH CONDITIONS (synthetic practice data only).** V1 source-traceability check passed 19 of 19 chunks; V2 found 2 of 3 staff chunks holding two lecturers each.
+**GO WITH CONDITIONS.** Synthetic practice data: V1 passed 19 of 19, V2 found 2 of 3 staff chunks holding two lecturers. Real-data pilot (FYP handbook 2026/2027 + all four FAI department staff pages merged with UTM Scholar keywords, kept locally in `data/raw_real/`, checksums in `data/real_data_manifest.json`): V1 passed 428 of 428, V2 passed 112 of 112, page kept on 316 of 316 PDF chunks.
 
 Unresolved actions:
-- Split staff profiles to one lecturer per chunk and remove the synthetic-disclaimer chunks, then re-run V1 / V2.
-- Replace synthetic files with permitted real UTM documents, record rights in the manifest, keep PDF page numbers, and repeat the audit.
+- Lecturer expertise: UTM Scholar raised AI-related lecturers from 20 to 37 (of 112), but generative AI is still 0; link the 31 unmatched Scholar records and request the FYP Committee topic list.
+- Novelty check against past FYPs moved to future work (needs a past-FYP title list from the FYP Committee).
+- Confirm the duplicate staff entry with the department.
 - Re-run `notebooks/week3_pipeline.ipynb` inside Colab.

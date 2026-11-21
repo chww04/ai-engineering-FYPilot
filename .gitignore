@@ -1,2 +1,6 @@
 .DS_Store
 *.drawio
+
+# Real UTM data: kept local until rights are confirmed
+data/raw_real/
+Claude outputs/

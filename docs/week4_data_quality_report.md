@@ -87,3 +87,105 @@ On real data, lecturers with longer, richer staff pages are likely to match more
 - Residual risks: uneven or outdated real profiles; small past-FYP coverage per area.
 - Re-review trigger: any new or changed source file, a change to the chunking configuration, or a V1 / V2 failure.
 - Not covered: the real UTM dataset, which stays unverified until condition 2 is met.
+
+---
+
+## Addendum — Real-Data Pilot Audit (2026-11-21)
+
+The pipeline now reads real sources from `data/raw_real/` (gitignored; real names and an internal handbook stay off the public repo). Checksums and counts are in [`data/real_data_manifest.json`](../data/real_data_manifest.json). `data/raw/` keeps the synthetic Week 3 files as evidence.
+
+| Source | Real file | Prepared output | Chunks |
+| --- | --- | --- | --- |
+| S01-real | Handbook FYP BAI 2026/2027 (PDF, 119 pages, 89.5 MB) | `data/raw_real/prepared_handbook_real.jsonl` | 301 (page number kept on every chunk) |
+| S03-real | All four FAI department pages: Intelligence Informatics, Smart Engineering and Advanced Technology, Business Intelligence Humanities and Governance, Creative AI (HTML, retrieved 2026-11-21) | `data/raw_real/prepared_staff_real.jsonl` | 112 (one lecturer per chunk; department-page expertise merged with UTM Scholar keywords) |
+| S02-real | Handbook Table 2.1: AI domains, topics and example FYP directions (pages 26–28) | `data/raw_real/prepared_domains_real.jsonl` | 15 (one domain per chunk) |
+
+### Five dimensions (Observed unless marked)
+
+| Dimension | Finding | Decision |
+| --- | --- | --- |
+| Completeness | 123 staff entries across 4 departments: 5 external (adjuncts, senior fellow) excluded; 24 of 118 internal staff (20%) have no expertise listed (II 12, SEAT 6, BIHG 3, CAI 3), leaving 94 indexable. 8 of 119 handbook pages give < 100 characters (pages 10, 16, 18, 94, 108, 112, 115, 117: figures and forms), so the FYP timeline figures are not extractable. The handbook text gives no assessment weights; it defers to the "approved course assessment plan". | Warning |
+| Consistency | 267 of 4,058 extracted handbook lines (6.6%) are exact repeats of the line above (doubled text layer). Removed in Prepare; 0 remain. Table 2.1 extracts with its columns interleaved in plain text extraction; fixed by splitting words by column position (pdfplumber) and checked against the page images. | Pass after fix |
+| Accuracy | 123 staff entries parsed from raw HTML. Three page-layout cases (names split over two lines, a name without a title, an email placed before a name) were fixed in the parser and checked by hand. Handbook table text order is wrong on page 26; other pages not spot-checked line by line (N.V.). | Review |
+| Timeliness | Handbook is for session 2026/2027. Staff page has no last-updated date. | Pass / N.V. |
+| Uniqueness | "Dr. Mohd Shahrizal bin Rusli" listed twice in Intelligence Informatics with two different emails (one person or two: N.V.). Two pairs of lecturers share identical expertise text (SEAT; CAI), which will tie in retrieval. 3 duplicate chunk texts in the handbook output. | Review |
+
+### Validation rules on real data
+
+| Rule | Tested | Result |
+| --- | --- | --- |
+| V1 source + checksum | 428 chunks (staff chunks checked against every source they draw on) | 428 pass, 0 fail |
+| V2 one lecturer per chunk | 112 staff chunks | 112 pass, 0 fail (fixed from synthetic: 2 of 3 failed) |
+| Page kept on PDF chunks (Week 4 condition 3) | 316 handbook and domain chunks | 316 pass |
+
+### Coverage and bias
+
+Only **20 of the 94** indexable lecturers (21%) list AI-related expertise (machine learning, deep learning, pattern recognition, NLP, vision, analytics). Keyword counts by area (one lecturer can count in several):
+
+| Area | II | SEAT | BIHG | CAI | Total |
+| --- | --- | --- | --- | --- | --- |
+| Civil / mechanical / manufacturing | 2 | 15 | 1 | 1 | 19 |
+| IoT / embedded / networks | 7 | 4 | 2 | 0 | 13 |
+| Security / forensics | 6 | 0 | 6 | 1 | 13 |
+| Software engineering / testing | 11 | 0 | 1 | 0 | 12 |
+| Machine learning / deep learning | 8 | 4 | 0 | 0 | 12 |
+| HCI / AR / design | 2 | 1 | 1 | 7 | 11 |
+| Data / business analytics | 4 | 0 | 5 | 0 | 9 |
+| Renewable energy / power | 1 | 7 | 1 | 0 | 9 |
+| Computer vision / image processing | 4 | 1 | 0 | 0 | 5 |
+| NLP / information retrieval | 1 | 0 | 0 | 0 | 1 |
+| Generative AI / LLM | 0 | 0 | 0 | 0 | 0 |
+
+The handbook's Table 2.1 lists NLP & Generative AI (RAG, chatbots, LLM evaluation) as an FYP domain, yet across all four pages only 1 lecturer lists NLP and none lists generative AI. The pages appear to carry staff expertise from before the faculty became FAI in 2023 (Inferred risk: **measurement bias**, the web profile does not measure current supervision interests). FYPilot built on these pages would match AI topics to very few supervisors and push most suggestions onto the same handful of lecturers (RAI2). Controls: add a second expertise source (UTM Scholar / Pure profiles or the FYP Committee's lecturer topic list), report coverage per FYP domain, and apply diversity re-ranking.
+
+The handbook states supervisors are assigned by the FYP Committee based on expertise, supervisory capacity and workload (page 11). This supports FR2's "SHALL NOT allocate" boundary and the RAI2 coverage control.
+
+### Second expertise source: UTM Scholar
+
+To address the measurement bias above, researcher keywords were taken from UTM Scholar's public researcher listing (`https://utmscholar.utm.my/api/researchers`, 1,949 UTM researchers, filtered to 122 with faculty = Faculty of Artificial Intelligence; saved as `data/raw_real/utmscholar_fai_2026-11-21.json`). Records were linked to department-page staff by normalised name (titles and bin/binti removed, word overlap ≥ 0.6).
+
+| Measure | Department pages only | Merged with UTM Scholar |
+| --- | --- | --- |
+| Indexable lecturers | 94 | 112 |
+| Internal staff still without any expertise | 24 | 6 |
+| Lecturers with AI-related expertise | 20 | 37 |
+| NLP / information retrieval | 1 | 4 |
+| Machine learning / deep learning | 12 | 16 |
+| Computer vision / image processing | 5 | 11 |
+| Generative AI / LLM | 0 | 0 |
+
+Findings: 91 of 122 Scholar records linked to a department-page entry; **31 did not link** (name spelling differences, or staff not listed on any department page: N.V.). Keyword text in Scholar mixes topic keywords with broad field-of-research labels in capitals; the capitalised labels were dropped. Generative AI is still absent from both sources, so FYPilot should say "no listed supervisor matches this area" rather than force a match (RAI1).
+
+### Lecturer coverage per handbook AI domain
+
+With S02 now the handbook's 15 AI domains, coverage is counted per domain: how many of the 112 indexed lecturers have expertise (department page or UTM Scholar) matching the domain's keywords. Keyword matching is approximate, so treat the counts as indicative.
+
+| Handbook AI domain | Lecturers |
+| --- | --- |
+| Machine Learning & Data Analytics | 22 |
+| AI for Cybersecurity | 19 |
+| Robotics, Autonomous & Edge AI | 13 |
+| Computer Vision & Multimedia AI | 12 |
+| Time-Series, Forecasting & Predictive AI | 12 |
+| Intelligent Systems, Agents & Optimisation | 11 |
+| Deep Learning | 7 |
+| Federated, Privacy-Preserving & Distributed AI | 6 |
+| Natural Language Processing & Generative AI | 4 |
+| Speech & Audio AI | 4 |
+| Explainable & Responsible AI | 4 |
+| Human-Centred AI & Affective Computing | 4 |
+| Knowledge-Based & Semantic AI | 1 |
+| Recommender & Personalisation Systems | 0 |
+| Multimodal AI | 0 |
+
+13 of 15 domains have at least one lecturer. For Recommender & Personalisation Systems and Multimodal AI, FYPilot must answer "no listed supervisor matches this area" (FR3, evaluated by C5).
+
+### Quality gate (real-data pilot)
+
+**GO WITH CONDITIONS** for S01-real (handbook) and S03-real (all four departments merged with UTM Scholar keywords).
+
+1. Second expertise source added (UTM Scholar). Still open: link or review the 31 unlinked Scholar records, and ask the FYP Committee for its lecturer topic list to cover generative AI.
+2. Novelty check against past FYPs moved to future work; S02 is now handbook Table 2.1. Revisit if the FYP Committee releases a past-title list.
+3. Confirm the duplicate staff entry with the department.
+
+All counts above are reproduced by `python src/real_pilot_pipeline.py` (V1 428/428, V2 112/112, page kept 316/316).

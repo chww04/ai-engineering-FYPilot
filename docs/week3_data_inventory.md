@@ -2,6 +2,8 @@
 
 Version: 1.0 · Week 3 · Pathway A (PDF/TXT) · Notebook: [`notebooks/week3_pipeline.ipynb`](../notebooks/week3_pipeline.ipynb)
 
+> **Update (Week 4):** real data has since replaced the synthetic files for the pipeline — the FYP Handbook BAI 2026/2027 and the four FAI department staff pages with UTM Scholar keywords. Past FYPs are no longer a source (novelty check moved to future work). See the [Week 4 report addendum](week4_data_quality_report.md#addendum--real-data-pilot-audit-2026-11-21). This page records the Week 3 state.
+
 > **Synthetic practice dataset.** The real UTM sources could not be downloaded for this lab, so three synthetic documents modelled on them were created by the project team. Results from this data do **not** show how well FYPilot itself performs. Each source lists the real document that will replace it.
 
 ## Step A1 — From Topic 2 requirements to data needs

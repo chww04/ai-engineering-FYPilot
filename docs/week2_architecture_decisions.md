@@ -2,13 +2,15 @@
 
 Version: 1.0 · Week 2 · Diagram: [week2_architecture_v1.png](week2_architecture_v1.png)
 
+> **Revised in Week 4:** see [week4_architecture_v2.jpg](week4_architecture_v2.jpg). The past-project source is replaced by the Domain Catalogue (handbook Table 2.1), and supervisor ranking and the batch data pipeline are shown as components.
+
 ## Step C1 — Simplest Architecture
 
 **Student → FYPilot Application → Language Model Service → Response**
 
 This simple flow can generate topic ideas from the model's general knowledge, but it cannot meet several requirements:
 
-- It does not know UTM Faculty of AI lecturers, rules or past projects (FR2, FR3, FR5, NFR3).
+- It does not know UTM Faculty of AI lecturers, rules or AI domains (FR2, FR3, FR5, NFR3).
 - It cannot cite sources (FR4, RAI1).
 - It cannot reliably refuse proposal-writing or out-of-scope requests, or keep personal data away from the model API (FR6, RAI3, RAI4).
 - It gives no way to measure relevance, latency, cost or supervisor coverage (NFR1, NFR2, NFR4, RAI2).
@@ -19,7 +21,7 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | --- | --- | --- |
 | FR1 | The student's interests and skills as input. | Application interface with a student profile form plus chat. |
 | FR2 / FR5 / NFR3 | Faculty-specific information about lecturers' research areas and FYP rules. | Faculty knowledge source (FYP guidelines, research groups, staff profiles). |
-| FR3 | Comparison of suggested topics against past projects. | Past-project knowledge source with a similarity check. |
+| FR3 | Each topic tied to a handbook AI domain and a lecturer whose expertise supports it. | Domain catalogue (handbook Table 2.1) + lecturer expertise index. |
 | FR4 / RAI1 | Every factual claim must carry a verifiable source. | Source tracking in knowledge access, plus a citation check on the output. |
 | FR6 / RAI3 | Out-of-scope and proposal-writing requests must be refused. | Scope / safety control on input and an integrity check on output. |
 | RAI4 | Personal data must not reach the external model API. | Privacy filter in the input control, before the model call. |
@@ -32,7 +34,7 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | Decision | Requirement / Constraint | Alternatives Considered | Selected Option | Trade-off Accepted |
 | --- | --- | --- | --- | --- |
 | Include faculty knowledge access | FR2, FR5, RAI1 — answers must be grounded in faculty documents and cited | Base model only; hand-written static FAQ; dynamic knowledge access | Dynamic faculty knowledge-access component with source tracking | More components and document parsing work, but grounded, citable answers that update when documents change. |
-| Dedicated past-project similarity check | FR3 — flag topics that repeat past FYPs | Let the language model judge novelty; no novelty check; separate similarity component | Separate past-project source + similarity check | Extra index and a similarity threshold to tune; broad topics may be wrongly flagged as duplicates. |
+| Ground topics in lecturer expertise instead of a past-FYP novelty check (revised Week 4) | FR3 and data availability — no past-FYP title list could be obtained; real staff pages, UTM Scholar and the handbook could | Past-FYP similarity check; free generation by the language model; expertise-grounded generation | Expertise-grounded topics framed by handbook Table 2.1; novelty check moved to future work | FYPilot cannot warn that a topic repeats a past FYP; students are reminded to check with their supervisor. |
 | Explicit scope and privacy control on input | FR6, RAI3, RAI4 — refuse out-of-scope requests, keep personal data from the API | Instructions in the prompt only; explicit control component | Explicit input control before the model call | Possible false refusals and a small amount of added latency. |
 | One language model call per request | NFR1, NFR4 — interactive latency and low budget | Multi-step agent with several model calls; single call | Single call with all retrieved context | Less room for self-correction; checks are done by rule-based components instead. |
 | Retrieval method | FR2, FR4 — exact lecturer names / titles and related ideas must both be found | Keyword only; semantic (embedding) only; hybrid | Hybrid keyword + semantic, to be confirmed in Topic 5 | Two indexes to maintain, in exchange for matching exact names and differently phrased ideas. |
@@ -44,17 +46,17 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | --- | --- | --- | --- | --- |
 | O1 | FR1 / NFR2 | Recommendation relevance (≥ 80% rated ≥ 4) | Application interface (profile form) + Language model service | Relevance rubric results on 20 test profiles |
 | O1 | FR2 / NFR3 | Supervisor match accuracy (≥ 90%) | Faculty knowledge source + Language model service | Supervisor match check against staff profiles |
-| O2 | FR3 | Duplicate-topic detection (≥ 80%; false flags ≤ 20%) | Past-project knowledge source + similarity check | Results on 10 seeded duplicate topics |
+| O2 | FR3 | Topic–expertise grounding (≥ 90%; 100% "no listed supervisor" on uncovered areas) | Domain catalogue + lecturer expertise index | Grounding check on 20 profiles + 10 uncovered-area profiles |
 | O2 | FR4 / RAI1 | Source citation and support (100% / ≥ 95%) | Knowledge access with source tracking + Output citation check | Citation audit of test responses |
 | O2 | FR6 / RAI3 / RAI4 | Refusal rate (≥ 95%); zero personal-data transmissions | Input scope & privacy control + Output integrity check | Safety / scope and privacy test runs |
-| O3 | NFR1 / NFR4 / RAI2 | p90 latency < 5 s; cost < US$0.50 / 100 queries; lecturer share ≤ 2 / N | Evaluation point | Latency, cost and coverage logs |
+| O3 | NFR1 / NFR4 / RAI2 | p90 latency < 5 s; cost < US$0.50 / 100 queries; lecturer share ≤ 2 / N (N = lecturers matching a test-profile area) | Evaluation point | Latency, cost and coverage logs |
 
 ## Final Review Checklist
 
 - **Does each major component support a requirement or evaluation need?** Yes — every component in the diagram is tagged with the requirement IDs that justify it.
-- **Is any data source, safety control or evaluation point missing?** No — faculty and past-project sources, input and output controls, and an evaluation point are all included.
+- **Is any data source, safety control or evaluation point missing?** No — the handbook, domain catalogue and lecturer expertise sources, input and output controls, and an evaluation point are all included.
 - **Have I added any technology that is not yet justified?** No — components are labelled by function only; specific models, databases and frameworks will be chosen in later topics.
-- **Is there a simpler architecture that still satisfies the requirements?** The faculty and past-project sources could be merged into one knowledge source, but keeping them separate makes the novelty check (FR3) clearer to build and evaluate.
+- **Is there a simpler architecture that still satisfies the requirements?** The domain catalogue and lecturer index could be merged into one knowledge source, but keeping them separate makes the topic–expertise grounding (FR3) clearer to build and evaluate.
 
 ### Reflection — Which architecture decision involved the most important trade-off? Which requirement drove it, and what trade-off did you accept?
 

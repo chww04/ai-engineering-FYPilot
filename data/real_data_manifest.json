@@ -1,0 +1,95 @@
+{
+  "pipeline_version": "real-pilot-v2",
+  "generated": "2026-11-21",
+  "note": "Real data kept locally in data/raw_real/ (gitignored). This manifest holds checksums and counts only.",
+  "checks": {
+    "V1": "428/428",
+    "V2": "112/112",
+    "page_kept": "316/316"
+  },
+  "records": [
+    {
+      "source_id": "S01-real",
+      "source": "FYP Handbook BAI 2026/2027 (PDF), FAI FYP Committee",
+      "source_sha256": "38ad807bc75cb9b4fde41aa3454b0b653e4fd4703d0b0ed66595a4dd6bbe30ca",
+      "prepared_output": "data/raw_real/prepared_handbook_real.jsonl",
+      "prepared_sha256": "f913becf901dd3d616a4825c02ccab4e6b85293683966c25b03446bc9a92dbaa",
+      "chunks": 301,
+      "pages": 119,
+      "skipped_pages": [
+        10,
+        16,
+        18,
+        94,
+        108,
+        112,
+        115,
+        117
+      ],
+      "repeated_lines": 267,
+      "total_lines": 4058,
+      "access_rights": "UTM internal handbook; not for public redistribution"
+    },
+    {
+      "source_id": "S02-real",
+      "source": "FYP Handbook BAI 2026/2027, Table 2.1 (AI domains, topics, example FYP directions)",
+      "source_sha256": "38ad807bc75cb9b4fde41aa3454b0b653e4fd4703d0b0ed66595a4dd6bbe30ca",
+      "prepared_output": "data/raw_real/prepared_domains_real.jsonl",
+      "prepared_sha256": "bc03a0744376ac945c49e370a41ce9c36d70d8f83a56b4c30ad48ab11befde4e",
+      "chunks": 15,
+      "access_rights": "UTM internal handbook; not for public redistribution"
+    },
+    {
+      "source_id": "S03-real",
+      "source": "Four FAI department staff pages + UTM Scholar researcher keywords",
+      "department_pages": [
+        {
+          "dept": "II",
+          "file": "fai_intelligence_informatics_2026-11-21.html",
+          "sha256": "7bece6c19bdd3ce68e0770941b41e6652c55ac75819861e05e236382673765aa",
+          "url": "https://fai.utm.my/department-of-intelligence-informatics-2/",
+          "entries": 45
+        },
+        {
+          "dept": "SEAT",
+          "file": "fai_seat_2026-11-21.html",
+          "sha256": "e2386a591206ae62d9950b6fc42ec76890336f1652c07bb7a31dfe64308bf4c3",
+          "url": "https://fai.utm.my/department-of-smart-engineering-and-advanced-technology/",
+          "entries": 37
+        },
+        {
+          "dept": "BIHG",
+          "file": "fai_bihg_2026-11-21.html",
+          "sha256": "4f6e9ce2cbe7436a472213ba48f2b9653fa3bd094e03313331d415ee9ee91e18",
+          "url": "https://fai.utm.my/department-of-business-intelligent-humanities-and-governance/",
+          "entries": 23
+        },
+        {
+          "dept": "CAI",
+          "file": "fai_cai_2026-11-21.html",
+          "sha256": "fa48ba1af0a11aa93e02b2c5a5103989980aa40751c6840a177a076a4a42b550",
+          "url": "https://fai.utm.my/department-of-creative-artificial-intelligence/",
+          "entries": 18
+        }
+      ],
+      "utm_scholar": {
+        "file": "utmscholar_fai_2026-11-21.json",
+        "sha256": "2e68ef5e118de8086c04d158560d14d00e8f23d22044e10eb9b1975fa97d4d7d",
+        "endpoint": "https://utmscholar.utm.my/api/researchers"
+      },
+      "prepared_output": "data/raw_real/prepared_staff_real.jsonl",
+      "prepared_sha256": "4df378c3954eb6f558761f22add17e8bba7d224c8859394f38338dd9b05d7f63",
+      "chunks": 112,
+      "entries": 123,
+      "external": 5,
+      "no_expertise": 6,
+      "dept_only": 22,
+      "scholar_only": 18,
+      "both": 72,
+      "scholar_fai_records": 122,
+      "scholar_linked": 91,
+      "scholar_unlinked": 31,
+      "access_rights": "Public pages naming real staff; raw copies kept out of the public repo"
+    }
+  ]
+}
