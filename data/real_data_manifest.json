@@ -3,8 +3,8 @@
   "generated": "2026-11-21",
   "note": "Real data kept locally in data/raw_real/ (gitignored). This manifest holds checksums and counts only.",
   "checks": {
-    "V1": "428/428",
-    "V2": "112/112",
+    "V1": "431/431",
+    "V2": "115/115",
     "page_kept": "316/316"
   },
   "records": [
@@ -78,17 +78,17 @@
         "endpoint": "https://utmscholar.utm.my/api/researchers"
       },
       "prepared_output": "data/raw_real/prepared_staff_real.jsonl",
-      "prepared_sha256": "4df378c3954eb6f558761f22add17e8bba7d224c8859394f38338dd9b05d7f63",
-      "chunks": 112,
+      "prepared_sha256": "1f04134528aaf3a46ff511b56eeb69ce850b53cc30e0ba294a0a927444738ad6",
+      "chunks": 115,
       "entries": 123,
       "external": 5,
-      "no_expertise": 6,
-      "dept_only": 22,
-      "scholar_only": 18,
-      "both": 72,
+      "no_expertise": 3,
+      "dept_only": 6,
+      "scholar_only": 21,
+      "both": 88,
       "scholar_fai_records": 122,
-      "scholar_linked": 91,
-      "scholar_unlinked": 31,
+      "scholar_linked": 110,
+      "scholar_unlinked": 12,
       "access_rights": "Public pages naming real staff; raw copies kept out of the public repo"
     }
   ]

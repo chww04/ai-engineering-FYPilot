@@ -20,7 +20,7 @@ Final-year students struggle to choose a suitable, feasible FYP topic and a matc
 
 ## Project Objectives
 
-- **O1:** To design a document-grounded AI assistant that recommends FYP topics and matching supervisors using official faculty and repository documents.
+- **O1:** To design a document-grounded AI assistant that recommends FYP topics and matching supervisors using official faculty documents and lecturer profiles.
 - **O2:** To develop the solution using retrieval-augmented generation (RAG) over faculty documents and lecturer expertise, with source citations and scope and privacy guardrails.
 - **O3:** To evaluate the solution in terms of recommendation relevance, supervisor match, groundedness (citation accuracy), topic–expertise grounding, latency, cost and Responsible AI safety (refusal, privacy and supervisor coverage).
 
@@ -65,10 +65,10 @@ Real files live in `data/raw_real/` (gitignored); checksums and counts are in [`
 
 ## Week 4 Quality Gate
 
-**GO WITH CONDITIONS.** Synthetic practice data: V1 passed 19 of 19, V2 found 2 of 3 staff chunks holding two lecturers. Real-data pilot (FYP handbook 2026/2027 + all four FAI department staff pages merged with UTM Scholar keywords, kept locally in `data/raw_real/`, checksums in `data/real_data_manifest.json`): V1 passed 428 of 428, V2 passed 112 of 112, page kept on 316 of 316 PDF chunks.
+**GO WITH CONDITIONS.** Synthetic practice data: V1 passed 19 of 19, V2 found 2 of 3 staff chunks holding two lecturers. Real-data pilot (FYP handbook 2026/2027 + all four FAI department staff pages merged with UTM Scholar keywords, kept locally in `data/raw_real/`, checksums in `data/real_data_manifest.json`): V1 passed 431 of 431, V2 passed 115 of 115, page kept on 316 of 316 PDF chunks.
 
 Unresolved actions:
-- Lecturer expertise: UTM Scholar raised AI-related lecturers from 20 to 37 (of 112), but generative AI is still 0; link the 31 unmatched Scholar records and request the FYP Committee topic list.
+- Lecturer expertise: UTM Scholar raised AI-related lecturers from 20 to 39 (of 115), but no lecturer lists generative AI (only 4 NLP); review the 12 unmatched Scholar records and request the FYP Committee topic list.
 - Novelty check against past FYPs moved to future work (needs a past-FYP title list from the FYP Committee).
 - Confirm the duplicate staff entry with the department.
 - Re-run `notebooks/week3_pipeline.ipynb` inside Colab.

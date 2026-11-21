@@ -223,8 +223,9 @@ def parse_department(path):
 
 def name_tokens(n):
     n = n.upper().replace("’", "'")
-    n = re.sub(r"\b(ASSOC\.?|PROF\.?|EMERITUS|DATO'?|DATUK|DATIN|TAN SRI|IR\.|TS\.|DR\.|SR\.|CHM|HJH\.|PROF)\b", " ", n)
-    n = re.sub(r"\b(BIN|BINTI|BT\.?|BTE|A/P|A/L)\b", " ", n)
+    # titles and bin/binti; the optional dot goes after \b, or "Dr." would never match
+    n = re.sub(r"\b(ASSOC|PROF|EMERITUS|DATO'?|DATUK|DATIN|TAN SRI|IR|TS|DR|SR|CHM|HJH|HJ)\b\.?", " ", n)
+    n = re.sub(r"\b(BIN|BINTI|BT|BTE|A/P|A/L)\b\.?", " ", n)
     return {w for w in re.sub(r"[^A-Z ]", " ", n).split() if len(w) > 1}
 
 

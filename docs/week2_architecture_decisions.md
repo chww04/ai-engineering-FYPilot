@@ -45,8 +45,8 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | Objective | Requirement | Evaluation Criterion | Architecture Element | Later Evidence |
 | --- | --- | --- | --- | --- |
 | O1 | FR1 / NFR2 | Recommendation relevance (≥ 80% rated ≥ 4) | Application interface (profile form) + Language model service | Relevance rubric results on 20 test profiles |
-| O1 | FR2 / NFR3 | Supervisor match accuracy (≥ 90%) | Faculty knowledge source + Language model service | Supervisor match check against staff profiles |
-| O2 | FR3 | Topic–expertise grounding (≥ 90%; 100% "no listed supervisor" on uncovered areas) | Domain catalogue + lecturer expertise index | Grounding check on 20 profiles + 10 uncovered-area profiles |
+| O1 | FR2 / NFR3 | Supervisor match accuracy (≥ 90%) | Faculty knowledge source + Language model service | Supervisor match check against indexed expertise (department page or UTM Scholar) |
+| O2 | FR3 | Topic–expertise grounding (≥ 90%; 100% "no listed supervisor" on uncovered areas) | Domain catalogue + lecturer expertise index | Grounding check on 20 profiles + 10 uncovered-domain profiles |
 | O2 | FR4 / RAI1 | Source citation and support (100% / ≥ 95%) | Knowledge access with source tracking + Output citation check | Citation audit of test responses |
 | O2 | FR6 / RAI3 / RAI4 | Refusal rate (≥ 95%); zero personal-data transmissions | Input scope & privacy control + Output integrity check | Safety / scope and privacy test runs |
 | O3 | NFR1 / NFR4 / RAI2 | p90 latency < 5 s; cost < US$0.50 / 100 queries; lecturer share ≤ 2 / N (N = lecturers matching a test-profile area) | Evaluation point | Latency, cost and coverage logs |
