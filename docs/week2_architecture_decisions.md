@@ -24,6 +24,7 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | FR6 / RAI3 | Out-of-scope and proposal-writing requests must be refused. | Scope / safety control on input and an integrity check on output. |
 | RAI4 | Personal data must not reach the external model API. | Privacy filter in the input control, before the model call. |
 | NFR1 / NFR4 | Responses must meet latency and cost thresholds. | One model call per request on a short path, with latency and cost logged. |
+| RAI2 | Suggestions must not concentrate on a few lecturers. | Supervisor ranking step with diversity re-ranking after retrieval. |
 | NFR2 / RAI2 | Relevance and supervisor coverage must be measured. | Evaluation point that logs responses, ratings, latency, cost and supervisor counts. |
 
 ## Step C4 — Architecture Decision Record (ADR)
@@ -33,6 +34,8 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | Include faculty knowledge access | FR2, FR5, RAI1 — answers must be grounded in faculty documents and cited | Base model only; hand-written static FAQ; dynamic knowledge access | Dynamic faculty knowledge-access component with source tracking | More components and document parsing work, but grounded, citable answers that update when documents change. |
 | Dedicated past-project similarity check | FR3 — flag topics that repeat past FYPs | Let the language model judge novelty; no novelty check; separate similarity component | Separate past-project source + similarity check | Extra index and a similarity threshold to tune; broad topics may be wrongly flagged as duplicates. |
 | Explicit scope and privacy control on input | FR6, RAI3, RAI4 — refuse out-of-scope requests, keep personal data from the API | Instructions in the prompt only; explicit control component | Explicit input control before the model call | Possible false refusals and a small amount of added latency. |
+| One language model call per request | NFR1, NFR4 — interactive latency and low budget | Multi-step agent with several model calls; single call | Single call with all retrieved context | Less room for self-correction; checks are done by rule-based components instead. |
+| Retrieval method | FR2, FR4 — exact lecturer names / titles and related ideas must both be found | Keyword only; semantic (embedding) only; hybrid | Hybrid keyword + semantic, to be confirmed in Topic 5 | Two indexes to maintain, in exchange for matching exact names and differently phrased ideas. |
 | Diversity-aware supervisor ranking | RAI2 — avoid over-recommending lecturers with richer profiles | Pure similarity ranking; diversity-aware re-ranking | Diversity-aware re-ranking | Top suggestion may be slightly less relevant (NFR2) in exchange for a fairer spread across lecturers. |
 
 ## Initial Requirements Traceability Matrix
@@ -41,10 +44,10 @@ This simple flow can generate topic ideas from the model's general knowledge, bu
 | --- | --- | --- | --- | --- |
 | O1 | FR1 / NFR2 | Recommendation relevance (≥ 80% rated ≥ 4) | Application interface (profile form) + Language model service | Relevance rubric results on 20 test profiles |
 | O1 | FR2 / NFR3 | Supervisor match accuracy (≥ 90%) | Faculty knowledge source + Language model service | Supervisor match check against staff profiles |
-| O2 | FR3 | Duplicate-topic detection (≥ 80%) | Past-project knowledge source + similarity check | Results on 10 seeded duplicate topics |
+| O2 | FR3 | Duplicate-topic detection (≥ 80%; false flags ≤ 20%) | Past-project knowledge source + similarity check | Results on 10 seeded duplicate topics |
 | O2 | FR4 / RAI1 | Source citation and support (100% / ≥ 95%) | Knowledge access with source tracking + Output citation check | Citation audit of test responses |
 | O2 | FR6 / RAI3 / RAI4 | Refusal rate (≥ 95%); zero personal-data transmissions | Input scope & privacy control + Output integrity check | Safety / scope and privacy test runs |
-| O3 | NFR1 / NFR4 / RAI2 | p90 latency < 5 s; cost < US$0.50 / 100 queries; lecturer share ≤ 15% | Evaluation point | Latency, cost and coverage logs |
+| O3 | NFR1 / NFR4 / RAI2 | p90 latency < 5 s; cost < US$0.50 / 100 queries; lecturer share ≤ 2 / N | Evaluation point | Latency, cost and coverage logs |
 
 ## Final Review Checklist
 

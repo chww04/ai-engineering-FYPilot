@@ -21,8 +21,8 @@ Final-year students struggle to choose a suitable, feasible FYP topic and a matc
 ## Project Objectives
 
 - **O1:** To design a document-grounded AI assistant that recommends FYP topics and matching supervisors using official faculty and repository documents.
-- **O2:** To develop the solution using retrieval-augmented generation (RAG) with hybrid search, source citations, a past-project similarity check, and guardrails.
-- **O3:** To evaluate the solution in terms of recommendation relevance, groundedness (citation accuracy), novelty against past FYPs, latency, and safety.
+- **O2:** To develop the solution using retrieval-augmented generation (RAG) over faculty documents, with source citations, a past-project similarity check, and scope and privacy guardrails.
+- **O3:** To evaluate the solution in terms of recommendation relevance, supervisor match, groundedness (citation accuracy), duplicate-topic detection, latency, cost and Responsible AI safety (refusal, privacy and supervisor coverage).
 
 ## Target Users
 
@@ -45,6 +45,7 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 - [Week 3 — Data Inventory](docs/week3_data_inventory.md)
 - [Week 3 — Pipeline Decisions & Stage Contracts](docs/week3_pipeline_decisions.md)
 - [Week 3 — V1 Data Pipeline Notebook](notebooks/week3_pipeline.ipynb)
+- [Week 4 — Data Quality & Bias Report](docs/week4_data_quality_report.md)
 
 ![V1 Architecture](docs/week2_architecture_v1.png)
 
@@ -57,3 +58,13 @@ Undergraduate students at UTM's Faculty of Artificial Intelligence who are about
 | W1 | System map + project scope | README + docs | ✅ |
 | W2 | Requirements, evaluation criteria + V1 architecture | docs/week2_*.md + architecture diagram | ✅ |
 | W3 | V1 data pipeline (PDF/TXT, synthetic practice data) | notebook + data inventory + pipeline diagram + prepared data & manifests | ✅ |
+| W4 | Data quality & bias audit | docs/week4_data_quality_report.md | ✅ |
+
+## Week 4 Quality Gate
+
+**GO WITH CONDITIONS (synthetic practice data only).** V1 source-traceability check passed 19 of 19 chunks; V2 found 2 of 3 staff chunks holding two lecturers each.
+
+Unresolved actions:
+- Split staff profiles to one lecturer per chunk and remove the synthetic-disclaimer chunks, then re-run V1 / V2.
+- Replace synthetic files with permitted real UTM documents, record rights in the manifest, keep PDF page numbers, and repeat the audit.
+- Re-run `notebooks/week3_pipeline.ipynb` inside Colab.
